@@ -15,7 +15,9 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        // 'passwords' => 'users',
+        //下記を修正
+        'passwords' => 'people',
     ],
 
     /*
@@ -38,12 +40,16 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            // 'provider' => 'users',
+            //下記を修正
+            'provider' => 'people',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            // 'provider' => 'users',
+            //下記を修正
+            'provider' => 'people',
             'hash' => false,
         ],
     ],
@@ -70,6 +76,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        //下記を追加
+        'people' => [
+            'driver' => 'eloquent',
+            'model' => App\Person::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -95,6 +106,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        //下記を追加
+        'people' => [
+            'provider' => 'people',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
