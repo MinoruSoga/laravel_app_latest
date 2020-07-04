@@ -37,4 +37,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function username()
+    {
+      return 'name';
+    }
+    // protected function validateLogin(Request $request) //この関数をコピペ
+    protected function validateLogin(\Illuminate\Http\Request $request) // Illuminate\Http\Requestに変更
+    {
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'login_password' => 'required|string',
+            // 'id' => 'required|integer' //この一行を追加
+        ]);
+    }
+    
+
+
 }

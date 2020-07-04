@@ -22,7 +22,7 @@ class Person extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'login_password',
     ];
 
     /**
@@ -31,7 +31,7 @@ class Person extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'login_password', 'remember_token',
     ];
 
     /**
@@ -43,4 +43,9 @@ class Person extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     //上記までを追加
+
+    public function getAuthPassword()
+    {
+        return $this->id;
+    }
 }
